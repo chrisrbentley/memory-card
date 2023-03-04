@@ -1,0 +1,21 @@
+#cards {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row wrap;
+  gap: 20px;
+}
+
+.card {
+  background-color: blue;
+  width: 18vw;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 50%;
+  width: 50%;
+}
