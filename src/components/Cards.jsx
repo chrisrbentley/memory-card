@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useEffect } from 'react';
 
 function Cards(props) {
   const { cards, setCards, score, setScore } = props;
@@ -21,6 +21,32 @@ function Cards(props) {
 
     setCards(updatedCards);
   }
+
+  function shuffleCards(array) {
+    let currentIndex = array.length;
+    let randomIndex;
+
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    setCards(array);
+  }
+
+  useEffect(() => {
+    console.log('working hahaha');
+    if (score < 30) {
+      shuffleCards(cards);
+    } else {
+      // end game
+    }
+  }, [score]);
 
   return (
     <main>
