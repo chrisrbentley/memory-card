@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
-function Header() {
+function Header(props) {
+  const { score } = props;
+
   return (
     <header>
       <h1>Baseball Memory</h1>
-      <h3>Score: 0</h3>
+      <h3>Score: {score}</h3>
     </header>
   );
 }
