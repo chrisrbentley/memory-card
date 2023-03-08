@@ -2,14 +2,22 @@
 import React, { useEffect } from 'react';
 
 function Cards(props) {
-  const { cards, setCards, score, setScore } = props;
+  const { cards, setCards, score, setScore, setHighScore, setGameOver } = props;
 
   function onCardClick(e) {
+    e.preventDefault();
     const cardID = e.target.dataset.id;
 
     const updatedCards = cards.map((card) => {
       if (card.id === cardID && card.clicked === false) {
         setScore(score + 1);
+        return {
+          ...card,
+          clicked: true,
+        };
+      } else if (card.id === cardID && card.clicked === true) {
+        setHighScore(score);
+        setScore(0);
         return {
           ...card,
           clicked: true,
@@ -40,11 +48,11 @@ function Cards(props) {
   }
 
   useEffect(() => {
-    console.log('working hahaha');
     if (score < 30) {
       shuffleCards(cards);
     } else {
       // end game
+      setGameOver(true);
     }
   }, [score]);
 

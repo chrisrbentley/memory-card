@@ -2,12 +2,15 @@
 import React from 'react';
 
 function Header(props) {
-  const { score } = props;
+  const { score, highScore } = props;
 
   return (
     <header>
       <h1>Baseball Memory</h1>
-      <h3>Score: {score}</h3>
+      <div id="scores">
+        <h3>Score: {score}</h3>
+        <h3>High Score: {highScore}</h3>
+      </div>
     </header>
   );
 }
