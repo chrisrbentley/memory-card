@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Header from './components/Header';
 import Cards from './components/Cards';
+import GameOver from './components/GameOver';
 import './styles/app.css';
 import uniqid from 'uniqid';
 
@@ -238,6 +239,16 @@ function App() {
         setCards={setCards}
         setGameOver={setGameOver}
       />
+      {gameOver ? (
+        <GameOver
+          score={score}
+          setScore={setScore}
+          setHighScore={setHighScore}
+          setGameOver={setGameOver}
+          cards={cards}
+          setCards={setCards}
+        />
+      ) : null}
     </div>
   );
 }

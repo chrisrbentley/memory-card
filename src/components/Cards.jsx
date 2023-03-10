@@ -13,8 +13,6 @@ function Cards(props) {
     setGameOver,
   } = props;
 
-  console.log(shuffleCards);
-
   function onCardClick(e) {
     e.preventDefault();
 
@@ -61,14 +59,9 @@ function Cards(props) {
   }
 
   useEffect(() => {
-    shuffleCards(cards);
-  }, []);
-
-  useEffect(() => {
     if (score < 30) {
       shuffleCards(cards);
     } else {
-      // end game
       setGameOver(true);
     }
   }, [score, cards]);
