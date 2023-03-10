@@ -232,6 +232,7 @@ function App() {
       <Cards
         score={score}
         setScore={setScore}
+        highScore={highScore}
         setHighScore={setHighScore}
         cards={cards}
         setCards={setCards}

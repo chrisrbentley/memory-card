@@ -1,33 +1,46 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Cards(props) {
-  const { cards, setCards, score, setScore, setHighScore, setGameOver } = props;
+  const {
+    cards,
+    setCards,
+    score,
+    setScore,
+    highScore,
+    setHighScore,
+    setGameOver,
+  } = props;
+
+  console.log(shuffleCards);
 
   function onCardClick(e) {
     e.preventDefault();
+
     const cardID = e.target.dataset.id;
+    const clickedCardIndex = cards.findIndex((card) => card.id === cardID);
+    const updatedCards = [...cards];
 
-    const updatedCards = cards.map((card) => {
-      if (card.id === cardID && card.clicked === false) {
-        setScore(score + 1);
-        return {
-          ...card,
-          clicked: true,
-        };
-      } else if (card.id === cardID && card.clicked === true) {
+    console.log(updatedCards);
+
+    if (cards[clickedCardIndex].clicked === false) {
+      setScore(score + 1);
+      updatedCards[clickedCardIndex].clicked = true;
+      setCards(updatedCards);
+    } else {
+      if (score > highScore) {
         setHighScore(score);
-        setScore(0);
+      }
+      setScore(0);
+      const resetCards = cards.map((card) => {
         return {
           ...card,
-          clicked: true,
+          clicked: false,
         };
-      } else {
-        return card;
-      }
-    });
-
-    setCards(updatedCards);
+      });
+      setCards(resetCards);
+    }
   }
 
   function shuffleCards(array) {
@@ -48,13 +61,17 @@ function Cards(props) {
   }
 
   useEffect(() => {
+    shuffleCards(cards);
+  }, []);
+
+  useEffect(() => {
     if (score < 30) {
       shuffleCards(cards);
     } else {
       // end game
       setGameOver(true);
     }
-  }, [score]);
+  }, [score, cards]);
 
   return (
     <main>
