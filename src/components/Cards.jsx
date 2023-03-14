@@ -42,20 +42,22 @@ function Cards(props) {
   }
 
   function shuffleCards(array) {
-    let currentIndex = array.length;
+    const shuffledArray = [...array];
+
+    let currentIndex = shuffledArray.length;
     let randomIndex;
 
     while (currentIndex != 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
 
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
+      [shuffledArray[currentIndex], shuffledArray[randomIndex]] = [
+        shuffledArray[randomIndex],
+        shuffledArray[currentIndex],
       ];
     }
 
-    setCards(array);
+    setCards(shuffledArray);
   }
 
   useEffect(() => {
@@ -64,7 +66,7 @@ function Cards(props) {
     } else {
       setGameOver(true);
     }
-  }, [score, cards]);
+  }, [score]);
 
   return (
     <main>
