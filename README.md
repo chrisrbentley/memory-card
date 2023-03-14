@@ -8,7 +8,7 @@ Click each baseball team, but only once and try to get to 30 points.
 - React Hooks
 - Javascript
 - HTML
--CSS
+- CSS
 
 ### Preview
 
